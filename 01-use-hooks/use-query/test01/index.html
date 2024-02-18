@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <script src="/cdn-library/react.development.js"></script>
+        <script src="/cdn-library/react-dom.development.js"></script>
+        <script src="/cdn-library/react-query.js"></script>
+        <script src="/cdn-library/browser.min.js"></script>
+    </head>
+    <body>
+        <div id="root"></div>
+
+        <script type="text/babel">
+            // Create a new QueryClient instance
+            const queryClient = new ReactQuery.QueryClient();
+
+            // Define your query function (fetchUsers in this example)
+            const fetchUsers = async () => {
+                const res = await fetch("users.json");
+                return res.json();
+            };
+
+            // Use the query in your component
+            const App = () => {
+                const { data, isLoading, error } = ReactQuery.useQuery(
+                    ["users"],
+                    fetchUsers
+                );
+                if (isLoading) return <p>Loading...</p>;
+                if (error) return <p>Error: {error.message}</p>;
+
+                return (
+                    <div>
+                        {data ? (
+                            <ul>
+                                {data.map((user) => (
+                                    <li key={user.id}>{user.name}</li>
+                                ))}
+                            </ul>
+                        ) : null}
+                    </div>
+                );
+            };
+            ReactDOM.createRoot(document.getElementById("root")).render(
+                <ReactQuery.QueryClientProvider client={queryClient}>
+                    <App />
+                </ReactQuery.QueryClientProvider>
+            );
+        </script>
+    </body>
+</html>
