@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>React 18 + Redux Example</title>
+        <!-- React 18 CDN -->
+        <script src="https://unpkg.com/react@18.2.0/umd/react.development.js"></script>
+        <script src="https://unpkg.com/react-dom@18.2.0/umd/react-dom.development.js"></script>
+        <!-- Redux CDN -->
+        <script src="https://unpkg.com/redux@4.2.1/dist/redux.js"></script>
+        <script src="https://unpkg.com/react-redux@8.0.5/dist/react-redux.js"></script>
+        <!-- Redux Toolkit CDN -->
+        <script src="https://unpkg.com/@reduxjs/toolkit@1.9.3/dist/redux-toolkit.umd.min.js"></script>
+
+        <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    </head>
+    <body>
+        <div id="root"></div>
+        <script type="text/babel">
+            // Redux store setup
+            const { configureStore, createSlice } = ReduxToolkit;
+            const counterSlice = createSlice({
+                name: "counter",
+                initialState: { value: 0 },
+                reducers: {
+                    increment: (state) => {
+                        state.value += 1;
+                    },
+                    decrement: (state) => {
+                        state.value -= 1;
+                    },
+                },
+            });
+            const store = configureStore({ reducer: counterSlice.reducer });
+
+            // React component
+            const CounterApp = () => {
+                const counter = ReactRedux.useSelector(
+                    (state) => state.counter
+                );
+                const dispatch = ReactRedux.useDispatch();
+                return (
+                    <div>
+                        <h1>Counter: {value}</h1>
+                        <button
+                            onClick={() =>
+                                dispatch(counterSlice.actions.increment())
+                            }
+                        >
+                            Increment
+                        </button>
+                        <button
+                            onClick={() =>
+                                dispatch(counterSlice.actions.decrement())
+                            }
+                        >
+                            Decrement
+                        </button>
+                    </div>
+                );
+            };
+
+            ReactDOM.createRoot(document.getElementById("root")).render(
+                <ReactRedux.Provider store={store}>
+                    <CounterApp />
+                </ReactRedux.Provider>
+            );
+        </script>
+    </body>
+</html>

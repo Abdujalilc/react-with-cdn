@@ -1,0 +1,2 @@
+https://unpkg.com/react-redux@8.0.5/dist/react-redux.js
+
