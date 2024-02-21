@@ -1,0 +1,3 @@
+<script src="https://cdn.jsdelivr.net/npm/react@18.2.0/umd/react.production.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/react-dom@18.2.0/umd/react-dom.production.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@reduxjs/toolkit@4.2.7/umd/redux-toolkit.production.min.js"></script>

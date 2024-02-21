@@ -1,71 +1,71 @@
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>React 18 + Redux Example</title>
-        <!-- React 18 CDN -->
-        <script src="https://unpkg.com/react@18.2.0/umd/react.development.js"></script>
-        <script src="https://unpkg.com/react-dom@18.2.0/umd/react-dom.development.js"></script>
-        <!-- Redux CDN -->
-        <script src="https://unpkg.com/redux@4.2.1/dist/redux.js"></script>
-        <script src="https://unpkg.com/react-redux@8.0.5/dist/react-redux.js"></script>
-        <!-- Redux Toolkit CDN -->
-        <script src="https://unpkg.com/@reduxjs/toolkit@1.9.3/dist/redux-toolkit.umd.min.js"></script>
+<div id="root"></div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/react/18.2.0/umd/react.production.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.2.0/umd/react-dom.production.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/redux/4.2.1/redux.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/react-redux/7.2.5/react-redux.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/redux-toolkit/2.2.1/redux-toolkit.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/7.23.10/babel.min.js"></script>
 
-        <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
-    </head>
-    <body>
-        <div id="root"></div>
-        <script type="text/babel">
-            // Redux store setup
-            const { configureStore, createSlice } = ReduxToolkit;
-            const counterSlice = createSlice({
-                name: "counter",
-                initialState: { value: 0 },
-                reducers: {
-                    increment: (state) => {
-                        state.value += 1;
-                    },
-                    decrement: (state) => {
-                        state.value -= 1;
-                    },
-                },
-            });
-            const store = configureStore({ reducer: counterSlice.reducer });
+<!-- Your custom script -->
+<script type="text/babel">
+    // Correct import for Redux and Redux Toolkit
+    const { configureStore, createSlice } = ReduxToolkit;
 
-            // React component
-            const CounterApp = () => {
-                const counter = ReactRedux.useSelector(
-                    (state) => state.counter
-                );
-                const dispatch = ReactRedux.useDispatch();
-                return (
-                    <div>
-                        <h1>Counter: {value}</h1>
-                        <button
-                            onClick={() =>
-                                dispatch(counterSlice.actions.increment())
-                            }
-                        >
-                            Increment
-                        </button>
-                        <button
-                            onClick={() =>
-                                dispatch(counterSlice.actions.decrement())
-                            }
-                        >
-                            Decrement
-                        </button>
-                    </div>
-                );
-            };
+    // Define a Redux slice
+    const counterSlice = createSlice({
+        name: "counter",
+        initialState: {
+            value: 0,
+        },
+        reducers: {
+            increment: (state) => {
+                state.value += 1;
+            },
+            decrement: (state) => {
+                state.value -= 1;
+            },
+        },
+    });
 
-            ReactDOM.createRoot(document.getElementById("root")).render(
-                <ReactRedux.Provider store={store}>
-                    <CounterApp />
-                </ReactRedux.Provider>
-            );
-        </script>
-    </body>
-</html>
+    // Extract action creators and reducer from the slice
+    const { actions, reducer } = counterSlice;
+    const { increment, decrement } = actions;
+
+    // Create Redux store
+    const store = configureStore({
+        reducer: reducer,
+    });
+
+    // Define React component
+    const Counter = () => {
+        // Access Redux store state and dispatch function using react-redux hooks
+        const count = ReactRedux.useSelector((state) => state.counter.value);
+        const dispatch = ReactRedux.useDispatch();
+
+        // Dispatch increment action when button is clicked
+        const handleIncrement = () => {
+            dispatch(increment());
+        };
+
+        // Dispatch decrement action when button is clicked
+        const handleDecrement = () => {
+            dispatch(decrement());
+        };
+
+        return (
+            <div>
+                <h1>Counter: {count}</h1>
+                <button onClick={handleIncrement}>Increment</button>
+                <button onClick={handleDecrement}>Decrement</button>
+            </div>
+        );
+    };
+
+    // Render React component
+    ReactDOM.render(
+        <ReactRedux.Provider store={store}>
+            <Counter />
+        </ReactRedux.Provider>,
+        document.getElementById("root")
+    );
+</script>
