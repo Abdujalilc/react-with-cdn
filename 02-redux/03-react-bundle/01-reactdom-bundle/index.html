@@ -1,0 +1,11 @@
+<div id="root"></div>
+<script src="../full-libraries/dist/react.bundle.js"></script>
+<script src="../full-libraries/dist/reactDom.bundle.js"></script>
+<script src="/cdn-library/browser.min.js"></script>
+<script type="text/babel">
+    const App = () => {
+        return react.createElement("h1", null, "Hello, React!");
+    };
+
+    reactDom.render(react.createElement(App), document.getElementById("root"));
+</script>
