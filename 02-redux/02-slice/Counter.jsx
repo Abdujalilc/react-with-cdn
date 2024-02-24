@@ -2,7 +2,7 @@ const { configureStore, createSlice } = ReduxToolkit;
 const { useSelector, useDispatch } = ReactRedux;
 
 const counterSlice = createSlice({
-    name: 'counter',
+    name: "counter",
     initialState: 0,
     reducers: {
         increment: (state) => state + 1,
@@ -12,15 +12,14 @@ const counterSlice = createSlice({
 
 const store = configureStore({
     reducer: {
-        counter: counterSlice.reducer
-    }
+        counter: counterSlice.reducer,
+    },
 });
-
 
 function Counter() {
     const count = useSelector((state) => state.counter);
     const dispatch = useDispatch();
-    const { increment, decrement } = counterSlice.actions
+    const { increment, decrement } = counterSlice.actions;
     return (
         <div>
             <h1>Counter App</h1>
@@ -35,5 +34,5 @@ ReactDOM.render(
     <ReactRedux.Provider store={store}>
         <Counter />
     </ReactRedux.Provider>,
-    document.getElementById('root')
+    document.getElementById("root")
 );

@@ -1,67 +1,10 @@
 <div id="root"></div>
-
-<script src="/cdn-library/browser.min.js"></script>
+<script src="/cdn-library/from_nodemodules/react.production.min.js"></script>
+<script src="/cdn-library/from_nodemodules/react-dom.production.min.js"></script>
+<script src="/cdn-library/from_nodemodules/redux.min.js"></script>
+<script src="/cdn-library/from_nodemodules/react-redux.min.js"></script>
+<script src="/cdn-library/webpack-bundled/ReduxToolkit.bundle.js"></script>
+<script src="/cdn-library/online-cdn/browser.min.js"></script>
 
 <!-- Your custom script -->
-<script type="text/babel">
-    // Correct import for Redux and Redux Toolkit
-    const { configureStore, createSlice } = ReduxToolkit;
-
-    // Define a Redux slice
-    const counterSlice = createSlice({
-        name: "counter",
-        initialState: {
-            value: 0,
-        },
-        reducers: {
-            increment: (state) => {
-                state.value += 1;
-            },
-            decrement: (state) => {
-                state.value -= 1;
-            },
-        },
-    });
-
-    // Extract action creators and reducer from the slice
-    const { actions, reducer } = counterSlice;
-    const { increment, decrement } = actions;
-
-    // Create Redux store
-    const store = configureStore({
-        reducer: reducer,
-    });
-
-    // Define React component
-    const Counter = () => {
-        // Access Redux store state and dispatch function using react-redux hooks
-        const count = ReactRedux.useSelector((state) => state.counter.value);
-        const dispatch = ReactRedux.useDispatch();
-
-        // Dispatch increment action when button is clicked
-        const handleIncrement = () => {
-            dispatch(increment());
-        };
-
-        // Dispatch decrement action when button is clicked
-        const handleDecrement = () => {
-            dispatch(decrement());
-        };
-
-        return (
-            <div>
-                <h1>Counter: {count}</h1>
-                <button onClick={handleIncrement}>Increment</button>
-                <button onClick={handleDecrement}>Decrement</button>
-            </div>
-        );
-    };
-
-    // Render React component
-    ReactDOM.render(
-        <ReactRedux.Provider store={store}>
-            <Counter />
-        </ReactRedux.Provider>,
-        document.getElementById("root")
-    );
-</script>
+<script type="text/babel" src="Counter.jsx"></script>
