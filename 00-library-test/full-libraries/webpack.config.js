@@ -3,9 +3,11 @@ const path = require('path');
 module.exports = {
     mode: 'development', // Set mode to development to disable minification
     entry: {
-        /*react: 'react',
-        reactDom: 'react-dom'*/
-        ReduxToolkit: ['redux', '@reduxjs/toolkit']
+        React: 'react',
+        ReactDOM: 'react-dom',
+        ReactRouter: 'react-router',
+        ReactRouterDOM: 'react-router-dom',
+        axios: 'axios',
     },
     output: {
         filename: '[name].bundle.js',
