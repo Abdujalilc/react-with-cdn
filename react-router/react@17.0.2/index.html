@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <script src="/cdn-library/online-cdn/react@17.0.2/react.development.js"></script>
+        <script src="/cdn-library/online-cdn/react@17.0.2/react-dom.development.js"></script>
+        <script src="/cdn-library/online-cdn/react@17.0.2/react-router-dom.min.js"></script>
+        <script src="/cdn-library/online-cdn/react@17.0.2/babel.min.js"></script>
+    </head>
+    <body>
+        <div id="root"></div>
+        <script type="text/babel">
+            const { BrowserRouter, Route, Switch, Link } = ReactRouterDOM;
+
+            // Components for different routes
+            const Home = () => <h2>Home</h2>;
+            const About = () => <h2>About</h2>;
+            const Contact = () => <h2>Contact</h2>;
+
+            const App = () => {
+                return (
+                    <BrowserRouter>
+                        <div>
+                            <nav>
+                                <ul>
+                                    <li>
+                                        <Link to="/">Home</Link>
+                                    </li>
+                                    <li>
+                                        <Link to="/about">About</Link>
+                                    </li>
+                                    <li>
+                                        <Link to="/contact">Contact</Link>
+                                    </li>
+                                </ul>
+                            </nav>
+                            <Switch>
+                                <Route path="/about">
+                                    <About />
+                                </Route>
+                                <Route path="/contact">
+                                    <Contact />
+                                </Route>
+                                <Route path="/">
+                                    <Home />
+                                </Route>
+                            </Switch>
+                        </div>
+                    </BrowserRouter>
+                );
+            };
+            ReactDOM.render(<App />, document.querySelector("#root"));
+        </script>
+    </body>
+</html>
