@@ -1,18 +1,25 @@
+// Destructure useState, useEffect from React
 const { useState, useEffect } = React;
+// Import Link from react-router-dom
 const { Link } = ReactRouterDOM;
 
+// Define Read component
 const Read = () => {
     const [data, setData] = useState([]);
 
+    // Function to fetch data from the server
     const getData = () => {
         axios.get("http://localhost:5000/user").then((res) => {
-            console.log(res.data);
             setData(res.data);
         });
     };
+
+    // Call getData on component mount
     useEffect(() => {
         getData();
     }, []);
+
+    // Function to handle delete operation
     const handleDelete = (id) => {
         if (window.confirm("Are You sure want to delete?")) {
             axios
@@ -24,6 +31,7 @@ const Read = () => {
         }
     };
 
+    // Render the component UI
     return (
         <div>
             <h1>Registration List</h1>
@@ -44,12 +52,13 @@ const Read = () => {
                             <td>{data.name}</td>
                             <td>{data.email}</td>
                             <td>
-                                <ReactRouterDOM.Link
+                                {/* Use Link from react-router-dom */}
+                                <Link
                                     to={`/update/${data.id}`}
                                     className="btn btn-primary"
                                 >
                                     Edit
-                                </ReactRouterDOM.Link>
+                                </Link>
                             </td>
                             <td>
                                 <button
@@ -63,9 +72,10 @@ const Read = () => {
                     ))}
                 </tbody>
             </table>
-            <ReactRouterDOM.Link to={"/"}>
-                <button className="btn btn-primary">Go back to Register</button>
-            </ReactRouterDOM.Link>
+            {/* Use Link from react-router-dom */}
+            <Link to={"/"} className="btn btn-primary">
+                Go back to Register
+            </Link>
         </div>
     );
 };

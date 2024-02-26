@@ -1,9 +1,9 @@
-//const axios = Axios;
+const { useHistory } = ReactRouterDOM;
 const { useState, useEffect } = React;
 const Create = () => {
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
-    const redirect = ReactRouterDOM.useNavigate();
+    const history = useHistory();
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -12,11 +12,11 @@ const Create = () => {
             .post("http://localhost:5000/user", {
                 name,
                 email,
-                // header
             })
-            .then(redirect("/read"))
+            .then(() => history.push("/read"))
             .catch((err) => console.log(err));
     };
+
     return (
         <div>
             <h2>Create</h2>
