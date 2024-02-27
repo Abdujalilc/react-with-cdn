@@ -6,3 +6,7 @@ https://cdnjs.com/
 <script src="https://cdnjs.cloudflare.com/ajax/libs/react-redux/7.2.5/react-redux.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/redux-toolkit/2.2.1/redux-toolkit.umd.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/7.23.10/babel.min.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/react-router-dom/6.0.0-beta.2/react-router-dom.production.min.js" ></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/react-router-dom/6.0.0-beta.2/react-router-dom.development.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/react-router/6.0.0-beta.2/react-router.development.js"></script>

@@ -11,9 +11,12 @@
     </head>
     <body>
         <div id="root"></div>
+        <div id="root"></div>
         <script src="/cdn-library/online-cdn/react@17.0.2/react.development.js"></script>
         <script src="/cdn-library/online-cdn/react@17.0.2/react-dom.development.js"></script>
-        <script src="/cdn-library/online-cdn/react@17.0.2/react-router-dom.min.js"></script>
+        <script src="history.development.js"></script>
+        <script src="react-router.development.js"></script>
+        <script src="react-router-dom.development.js"></script>
         <script src="/cdn-library/online-cdn/react@17.0.2/axios.min.js"></script>
         <script src="/cdn-library/online-cdn/react@17.0.2/babel.min.js"></script>
         <script type="text/babel" src="./components/Create.jsx"></script>
@@ -21,13 +24,17 @@
         <script type="text/babel" src="./components/Update.jsx"></script>
         <script type="text/babel" src="./components/Delete.jsx"></script>
         <script type="text/babel" src="./components/NotFound.jsx"></script>
+
         <script type="text/babel">
-            const { BrowserRouter, Route, Switch, Link } = ReactRouterDOM;
+            /*const Create = () => {
+                return <div>Create</div>;
+            };*/
+            const { BrowserRouter, Routes, Route, Link } = ReactRouterDOM;
             function App() {
                 return (
                     <div className="container">
                         <BrowserRouter>
-                            <Switch>
+                            <Routes>
                                 <Route path="/">
                                     <Create />
                                 </Route>
@@ -43,11 +50,14 @@
                                 <Route path="*">
                                     <NotFound />
                                 </Route>
-                            </Switch>
+                            </Routes>
                         </BrowserRouter>
                     </div>
                 );
             }
+            /*ReactDOM.createRoot(document.getElementById("root")).render(
+                <App />
+            );*/
             ReactDOM.render(<App />, document.getElementById("root"));
         </script>
     </body>
